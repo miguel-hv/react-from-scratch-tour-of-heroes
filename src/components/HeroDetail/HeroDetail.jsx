@@ -1,12 +1,13 @@
 import React from "react";
+import { useContext } from "react";
+import { HeroesContext } from "../../App";
 import './HeroDetail.css';
 
 const HeroDetail = (props)=> {
     console.log(props);
 
     const idHero = props.match.params.id;
-    // const idHero = 12;
-    const selectedHero = props.heroes.find(e => e.id == idHero);
+    const selectedHero = useContext(HeroesContext).find(e => e.id == idHero);
 
     return(
         <>

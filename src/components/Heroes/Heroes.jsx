@@ -1,23 +1,17 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import './Heroes.css';
-import HeroDetail from '../HeroDetail/HeroDetail';
 import { Link } from 'react-router-dom';
+import { HeroesContext } from '../../App';
+import HeroDetail from '../HeroDetail/HeroDetail';
+import './Heroes.css';
 
 
 
 const INITIAL_STATE = null;
 
-const Heroes = ({heroes})=> {
+const Heroes = ()=> {
 
-    const [selectedHero, setSelectedHero] = useState(INITIAL_STATE);
-
-    const handleClick = (key)=> {
-        // console.log(heroes[key]);
-        setSelectedHero(heroes[key]);
-    }
-
+    const heroes = useContext(HeroesContext);
     return(
         
         <>
@@ -30,8 +24,6 @@ const Heroes = ({heroes})=> {
                     return (
                         <li 
                         key={hero.id} 
-                        // onClick={()=>handleClick(key)}
-                        className={`${hero ===selectedHero ? "selected" : ""}`}
                         >
                             <Link to={`/details/${hero.id}`}>
                                 <span className="badge">{hero.id}</span> {hero.name}
