@@ -1,7 +1,12 @@
 import React from "react";
 import './HeroDetail.css';
 
-const HeroDetail = ({selectedHero})=> {
+const HeroDetail = (props)=> {
+    console.log(props);
+
+    const idHero = props.match.params.id;
+    // const idHero = 12;
+    const selectedHero = props.heroes.find(e => e.id == idHero);
 
     return(
         <>
@@ -13,6 +18,8 @@ const HeroDetail = ({selectedHero})=> {
             )
             : (<p>Ningún héroe seleccionado</p>)
         }
+
+        <button onClick={props.history.goBack}> Back </button>
         </>
 
     );

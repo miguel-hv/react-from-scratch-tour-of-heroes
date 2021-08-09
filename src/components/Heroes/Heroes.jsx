@@ -3,6 +3,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Heroes.css';
 import HeroDetail from '../HeroDetail/HeroDetail';
+import { Link } from 'react-router-dom';
+
 
 
 const INITIAL_STATE = null;
@@ -20,18 +22,20 @@ const Heroes = ({heroes})=> {
         
         <>
             <h2>My heroes</h2>
-          
-            <HeroDetail selectedHero={selectedHero}/>
+            
+            {/* <HeroDetail selectedHero={selectedHero}/> */}
     
             <ul className="heroes">
                 {heroes.map((hero, key)=>{
                     return (
                         <li 
                         key={hero.id} 
-                        onClick={()=>handleClick(key)}
+                        // onClick={()=>handleClick(key)}
                         className={`${hero ===selectedHero ? "selected" : ""}`}
                         >
-                            <span className="badge">{hero.id}</span> {hero.name}
+                            <Link to={`/details/${hero.id}`}>
+                                <span className="badge">{hero.id}</span> {hero.name}
+                            </Link>
                         </li>
                     );
                 })}

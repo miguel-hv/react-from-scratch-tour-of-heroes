@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { hot } from "react-hot-loader";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Dashboard, HeroDetail, Heroes, Input, Navbar } from './components';
 import "./App.css";
-import Heroes from "./components/Heroes/Heroes";
-import Input from "./components/Input/Input";
+
 
 const INITIAL_STATE = [
   { id: 11, name: 'Dr Nice' },
@@ -24,11 +25,18 @@ function App() {
   const [heroes, setHeroes] = useState(INITIAL_STATE); 
 
   return (
-    <div className="App">
-      <h1>Tour of Heroes</h1>
-      <Heroes heroes={heroes}/>
-      {/* <Input hero={hero} handleChangeHeroName={handleChangeHeroName}/> */}
-    </div>
+    <Router>
+      <div className="App">
+        <h1>Tour of Heroes</h1>
+        <Navbar/>
+        <Switch>
+          <Route exact path={["/dashboard", "/"]} render={(props)=> <Dashboard {...props} heroes={heroes}/>}/>
+          <Route exact path="/heroes" render={(props)=> <Heroes {...props} heroes={heroes}/>}/>
+          <Route exact path="/details/:id" render={(props) => <HeroDetail {...props} heroes={heroes}/>}/>
+          {/* <Input hero={hero} handleChangeHeroName={handleChangeHeroName}/> */}
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
