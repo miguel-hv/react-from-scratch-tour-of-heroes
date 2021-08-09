@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Heroes.css';
+import HeroDetail from '../HeroDetail/HeroDetail';
 
 
 const INITIAL_STATE = null;
@@ -19,13 +20,8 @@ const Heroes = ({heroes})=> {
         
         <>
             <h2>My heroes</h2>
-            {selectedHero && (
-                <div>
-                    <h2>{selectedHero.name.toUpperCase()} Details</h2>
-                    <div>id: {selectedHero.id}</div>
-                </div>
-                )
-            }
+          
+            <HeroDetail selectedHero={selectedHero}/>
     
             <ul className="heroes">
                 {heroes.map((hero, key)=>{
